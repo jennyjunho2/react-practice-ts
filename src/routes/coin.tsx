@@ -103,8 +103,7 @@ function Coin() {
             setPriceInfo(priceData);
             setLoading(false);
         })();
-
-    }, [])
+    }, [coinId])
 
     return (
         <Container>
