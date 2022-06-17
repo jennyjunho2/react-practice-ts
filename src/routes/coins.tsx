@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react"
 import { useQuery } from "react-query"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 import { fetchCoins } from "../api"
-
+import { Helmet } from "react-helmet-async"
 const Container = styled.div`
     padding: 0 20px;
-    max-width: 480p;
+    max-width: 480px;
     margin: 0 auto;
 `
 
@@ -22,11 +21,12 @@ const CoinsList = styled.ul`
 `
 
 const Coin = styled.li`
-    background-color: #fff;
-    color: ${props => props.theme.bgColor};
+    background-color: ${props => props.theme.cardBgColor};
+    color: ${props => props.theme.textColor};
+    font-size: 32px;
     padding: 20px;
     margin-bottom: 10px;
-    border-radius: 15px;
+    border: 1px solid white;
 
     a {
         display: flex;
@@ -72,6 +72,9 @@ function Coins() {
 
   return (
     <Container>
+      <Helmet>
+        <title>Coins!</title>
+      </Helmet>
       <Header>
         <Title>Coins</Title>
       </Header>
