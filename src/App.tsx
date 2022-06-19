@@ -4,7 +4,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { darkTheme } from "./theme";
 import { useState } from "react";
 import { useRecoilValue } from "recoil";
-import ToDoList from "./ToDoList";
+import ToDoList from "./components/ToDoList";
 
 const GlobalStyle = createGlobalStyle`
   font-family: 'Source Sans Pro', sans-serif;
