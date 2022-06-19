@@ -1,11 +1,10 @@
 import { createGlobalStyle, ThemeProvider } from "styled-components";
-import Router from "./Router";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { HelmetProvider } from "react-helmet-async";
-import { darkTheme, lightTheme } from "./theme";
+import { darkTheme } from "./theme";
 import { useState } from "react";
 import { useRecoilValue } from "recoil";
-import { isDarkAtom } from "./atoms";
+import ToDoList from "./ToDoList";
 
 const GlobalStyle = createGlobalStyle`
   font-family: 'Source Sans Pro', sans-serif;
@@ -76,16 +75,10 @@ const GlobalStyle = createGlobalStyle`
 `
 
 function App() {
-  const isDark = useRecoilValue(isDarkAtom);
   return (
     <>
-      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
-        <GlobalStyle />
-        <HelmetProvider>
-          <Router />
-        </HelmetProvider>
-        <ReactQueryDevtools initialIsOpen />
-      </ThemeProvider>
+      <GlobalStyle />
+      <ToDoList />
     </>
   );
 }
