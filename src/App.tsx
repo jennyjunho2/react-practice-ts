@@ -1,9 +1,4 @@
-import { createGlobalStyle, ThemeProvider } from "styled-components";
-import { ReactQueryDevtools } from "react-query/devtools";
-import { HelmetProvider } from "react-helmet-async";
-import { darkTheme } from "./theme";
-import { useState } from "react";
-import { useRecoilValue } from "recoil";
+import { createGlobalStyle } from "styled-components";
 import ToDoList from "./components/ToDoList";
 
 const GlobalStyle = createGlobalStyle`
