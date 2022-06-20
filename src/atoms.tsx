@@ -1,24 +1,17 @@
 import { atom, selector } from "recoil";
 
-export interface IToDo {
-    text: string;
-    id: number;
-    category: "DOING" | "TODO" | "DONE";
-}
+export const minuteState = atom({
+    key: "minutes",
+    default: 0,
+});
 
-export const toDoState = atom<IToDo[]>({
-    key: "toDo",
-    default: [],
-})
-
-export const toDoSelector = selector({
-    key: "toDoSelector",
+export const hourSelector = selector<number>({
+    key: "hours",
     get: ({ get }) => {
-        const toDos = get(toDoState)
-        return [
-            toDos.filter((toDo) => toDo.category === "TODO"),
-            toDos.filter((toDo) => toDo.category === "DOING"),
-            toDos.filter((toDo) => toDo.category === "DONE")
-        ];
+        const minutes = get(minuteState);
+        return minutes / 60;
+    },
+    set: ({ set }, newValue) => {
+        set(minuteState, Number(newValue) * 60)
     }
-})
+});
