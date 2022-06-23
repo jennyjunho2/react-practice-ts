@@ -21,16 +21,24 @@ const Boards = styled.div`
   gap: 10px;
 `
 
+interface IToDoState {
+  [key: string]: string[];
+}
+
+
 function App() {
   const [toDos, setToDos] = useRecoilState(toDoState)
-  const onDragEnd = ({ draggableId, destination, source }: DropResult) => {
+  const onDragEnd = ({ destination, source, draggableId }: DropResult) => {
     if (!destination) { return; }
-    // setToDos((current) => {
-    //   const temp = [...current];
-    //   temp.splice(source.index, 1)
-    //   temp.splice(destination?.index, 0, draggableId)
-    //   return temp;
-    // })
+    setToDos((current) => {
+      const temp = [...current[source.droppableId]]
+      temp.splice(destination?.index, 0, ...temp.splice(source.index, 1))
+      return {
+        ...current,
+        [source.droppableId]: temp
+      }
+    }
+    )
   };
   return (
     <DragDropContext onDragEnd={onDragEnd}>
