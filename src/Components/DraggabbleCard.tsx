@@ -1,5 +1,6 @@
 import { Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
+import React from "react";
 
 const Card = styled.div`
   border-radius: 5px;
@@ -13,7 +14,7 @@ interface IDraggableCardProps {
     index: number;
 }
 
-export default function DraggableCard({ toDo, index }: IDraggableCardProps) {
+function DraggableCard({ toDo, index }: IDraggableCardProps) {
     return (<Draggable key={toDo} draggableId={toDo} index={index}>
         {(magic) => (
             <Card ref={magic.innerRef}
@@ -24,3 +25,5 @@ export default function DraggableCard({ toDo, index }: IDraggableCardProps) {
         )}
     </Draggable>)
 }
+
+export default React.memo(DraggableCard)
